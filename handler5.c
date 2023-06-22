@@ -38,7 +38,8 @@ int count_word(char *s)
 char **strtow(char *str)
 {
 	char **word_matrix, *tmp;
-	int i, matrix_index = 0, str_len = 0, word_count, char_index = 0, word_start, word_end;
+	int i, matrix_index = 0, str_len = 0;
+	int word_count, char_index = 0, word_start, word_end;
 
 	str_len = strlen(str);
 	word_count = count_word(str);
@@ -126,3 +127,4 @@ void free_all(int all)
 		}
 	}
 }
+

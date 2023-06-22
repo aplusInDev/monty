@@ -33,8 +33,8 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-    char *opcode;
-    void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
@@ -48,9 +48,9 @@ typedef struct instruction_s
  */
 typedef struct args_s
 {
-    char *av;
-    int ac;
-    unsigned int line_number;
+	char *av;
+	int ac;
+	unsigned int line_number;
 } args_t;
 
 /**
@@ -63,11 +63,11 @@ typedef struct args_s
  */
 typedef struct data_s
 {
-    char *line;
-    char **words;
-    stack_t *stack;
-    FILE *fptr;
-    int qflag;
+	char *line;
+	char **words;
+	stack_t *stack;
+	FILE *fptr;
+	int qflag;
 } data_t;
 
 typedef stack_t dlistint_t;
@@ -75,9 +75,9 @@ typedef stack_t dlistint_t;
 extern data_t data;
 
 #define DATA_INIT                 \
-    {                             \
-        NULL, NULL, NULL, NULL, 0 \
-    }
+{                             \
+	NULL, NULL, NULL, NULL, 0 \
+}
 
 #define USAGE "USAGE: monty file\n"
 #define FILE_ERROR "Error: Can't open file %s\n"

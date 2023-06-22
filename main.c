@@ -9,13 +9,13 @@
  */
 int main(int argc, char *argv[])
 {
-    args_t args;
+	args_t args;
 
-    args.av = argv[1];
-    args.ac = argc;
-    args.line_number = 0;
+	args.av = argv[1];
+	args.ac = argc;
+	args.line_number = 0;
 
-    monty(&args);
+	monty(&args);
 
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

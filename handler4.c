@@ -49,6 +49,7 @@ void (*get_func(char **parsed))(stack_t **, unsigned int)
 void pchar_handler(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = *stack;
+
 	if (!new_node)
 	{
 		dprintf(STDERR_FILENO, PCHAR_FAIL, line_number);

@@ -8,14 +8,14 @@
  */
 size_t print_dlistint(const dlistint_t *h)
 {
-    size_t len = 0;
+	size_t len = 0;
 
-    if (!h)
-        return (0);
+	if (!h)
+		return (0);
 
-    for (; h; h = h->next, len++)
-        printf("%d\n", h->n);
-    return (len);
+	for (; h; h = h->next, len++)
+		printf("%d\n", h->n);
+	return (len);
 }
 
 /**
@@ -26,14 +26,14 @@ size_t print_dlistint(const dlistint_t *h)
  */
 size_t dlistint_len(const dlistint_t *h)
 {
-    size_t len = 0;
+	size_t len = 0;
 
-    if (!h)
-        return (0);
+	if (!h)
+		return (0);
 
-    for (; h; h = h->next)
-        len++;
-    return (len);
+	for (; h; h = h->next)
+		len++;
+	return (len);
 }
 
 /**
@@ -44,12 +44,12 @@ size_t dlistint_len(const dlistint_t *h)
  */
 void free_dlistint(dlistint_t *head)
 {
-    dlistint_t *tmp;
+	dlistint_t *tmp;
 
-    while (head)
-    {
-        tmp = head->next;
-        free(head);
-        head = tmp;
-    }
+	while (head)
+	{
+		tmp = head->next;
+		free(head);
+		head = tmp;
+	}
 }

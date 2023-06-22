@@ -7,35 +7,35 @@
  */
 void push_handler(stack_t **stack, unsigned int line_number)
 {
-    stack_t *new_s;
-    int num = 0, i;
+	stack_t *new_s;
+	int num = 0, i;
 
-    if (data.words[1] == NULL)
-    {
-        dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
-        free_all(1);
-        exit(EXIT_FAILURE);
-    }
-    for (i = 0; data.words[1][i]; i++)
-    {
-        if (isalpha(data.words[1][i]) != 0)
-        {
-            dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
-            free_all(1);
-            exit(EXIT_FAILURE);
-        }
-    }
-    num = atoi(data.words[1]);
-    if (data.qflag == 0)
-        new_s = add_dnodeint(stack, num);
-    else if (data.qflag == 1)
-        new_s = add_dnodeint_end(stack, num);
-    if (!new_s)
-    {
-        dprintf(STDERR_FILENO, MALLOC_FAIL);
-        free_all(1);
-        exit(EXIT_FAILURE);
-    }
+	if (data.words[1] == NULL)
+	{
+		dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
+	}
+	for (i = 0; data.words[1][i]; i++)
+	{
+		if (isalpha(data.words[1][i]) != 0)
+		{
+			dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
+			free_all(1);
+			exit(EXIT_FAILURE);
+		}
+	}
+	num = atoi(data.words[1]);
+	if (data.qflag == 0)
+		new_s = add_dnodeint(stack, num);
+	else if (data.qflag == 1)
+		new_s = add_dnodeint_end(stack, num);
+	if (!new_s)
+	{
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
+		free_all(1);
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
@@ -45,9 +45,9 @@ void push_handler(stack_t **stack, unsigned int line_number)
  */
 void pall_handler(stack_t **stack, unsigned int line_number)
 {
-    (void)line_number;
-    if (*stack)
-        print_dlistint(*stack);
+	(void)line_number;
+	if (*stack)
+		print_dlistint(*stack);
 }
 
 /**
@@ -59,16 +59,16 @@ void pall_handler(stack_t **stack, unsigned int line_number)
  */
 void pint_handler(stack_t **stack, unsigned int line_number)
 {
-    stack_t *current = *stack;
+	stack_t *current = *stack;
 
-    if (!current)
-    {
-        dprintf(STDERR_FILENO, PINT_FAIL, line_number);
-        free_all(1);
-        exit(EXIT_FAILURE);
-    }
+	if (!current)
+	{
+		dprintf(STDERR_FILENO, PINT_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
+	}
 
-    printf("%d\n", current->n);
+	printf("%d\n", current->n);
 }
 
 /**
@@ -80,16 +80,16 @@ void pint_handler(stack_t **stack, unsigned int line_number)
  */
 void pop_handler(stack_t **stack, unsigned int line_number)
 {
-    stack_t *tmp = *stack;
+	stack_t *tmp = *stack;
 
-    if (!tmp)
-    {
-        dprintf(STDERR_FILENO, POP_FAIL, line_number);
-        free_all(1);
-        exit(EXIT_FAILURE);
-    }
+	if (!tmp)
+	{
+		dprintf(STDERR_FILENO, POP_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
+	}
 
-    delete_dnodeint_at_index(stack, 0);
+	delete_dnodeint_at_index(stack, 0);
 }
 
 /**
@@ -101,24 +101,24 @@ void pop_handler(stack_t **stack, unsigned int line_number)
  */
 void swap_handler(stack_t **stack, unsigned int line_number)
 {
-    stack_t *tmp = *stack, *new_node = NULL;
-    int number;
+	stack_t *tmp = *stack, *new_node = NULL;
+	int number;
 
-    if (dlistint_len(*stack) < 2)
-    {
-        dprintf(STDERR_FILENO, SWAP_FAIL, line_number);
-        free_all(1);
-        exit(EXIT_FAILURE);
-    }
+	if (dlistint_len(*stack) < 2)
+	{
+		dprintf(STDERR_FILENO, SWAP_FAIL, line_number);
+		free_all(1);
+		exit(EXIT_FAILURE);
+	}
 
-    tmp = get_dnodeint_at_index(*stack, 0);
-    number = tmp->n;
-    delete_dnodeint_at_index(stack, 0);
-    new_node = insert_dnodeint_at_index(stack, 1, number);
-    if (!new_node)
-    {
-        dprintf(STDERR_FILENO, MALLOC_FAIL);
-        free_all(1);
-        exit(EXIT_FAILURE);
-    }
+	tmp = get_dnodeint_at_index(*stack, 0);
+	number = tmp->n;
+	delete_dnodeint_at_index(stack, 0);
+	new_node = insert_dnodeint_at_index(stack, 1, number);
+	if (!new_node)
+	{
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
+		free_all(1);
+		exit(EXIT_FAILURE);
+	}
 }

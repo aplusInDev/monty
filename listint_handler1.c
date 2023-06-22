@@ -9,26 +9,26 @@
  */
 dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 {
-    dlistint_t *new_node;
+	dlistint_t *new_node;
 
-    if (!head)
-        return (NULL);
+	if (!head)
+		return (NULL);
 
-    new_node = malloc(sizeof(dlistint_t));
-    if (!new_node)
-        return (NULL);
+	new_node = malloc(sizeof(dlistint_t));
+	if (!new_node)
+		return (NULL);
 
-    new_node->n = n;
+	new_node->n = n;
 
-    new_node->next = *head;
-    new_node->prev = NULL;
+	new_node->next = *head;
+	new_node->prev = NULL;
 
-    if (*head)
-        (*head)->prev = new_node;
+	if (*head)
+		(*head)->prev = new_node;
 
-    *head = new_node;
+	*head = new_node;
 
-    return (new_node);
+	return (new_node);
 }
 
 /**
@@ -40,33 +40,33 @@ dlistint_t *add_dnodeint(dlistint_t **head, const int n)
  */
 dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 {
-    dlistint_t *new_node;
-    dlistint_t *tmp = *head;
+	dlistint_t *new_node;
+	dlistint_t *tmp = *head;
 
-    if (!head)
-        return (NULL);
+	if (!head)
+		return (NULL);
 
-    new_node = malloc(sizeof(dlistint_t));
-    if (!new_node)
-        return (NULL);
+	new_node = malloc(sizeof(dlistint_t));
+	if (!new_node)
+		return (NULL);
 
-    new_node->n = n;
-    new_node->next = NULL;
+	new_node->n = n;
+	new_node->next = NULL;
 
-    if (*head == NULL)
-    {
-        new_node->prev = NULL;
-        *head = new_node;
-        return (new_node);
-    }
+	if (*head == NULL)
+	{
+		new_node->prev = NULL;
+		*head = new_node;
+		return (new_node);
+	}
 
-    while (tmp->next)
-        tmp = tmp->next;
+	while (tmp->next)
+		tmp = tmp->next;
 
-    tmp->next = new_node;
-    new_node->prev = tmp;
+	tmp->next = new_node;
+	new_node->prev = tmp;
 
-    return (new_node);
+	return (new_node);
 }
 
 /**
@@ -80,34 +80,34 @@ dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-    unsigned int i;
-    dlistint_t *new_node;
-    dlistint_t *tmp = *h;
+	unsigned int i;
+	dlistint_t *new_node;
+	dlistint_t *tmp = *h;
 
-    if (idx == 0)
-        return (add_dnodeint(h, n));
-    for (i = 0; tmp && i < idx; i++)
-    {
-        if (i == idx - 1)
-        {
-            if (tmp->next == NULL)
-                return (add_dnodeint_end(h, n));
-            new_node = malloc(sizeof(dlistint_t));
-            if (!new_node || !h)
-                return (NULL);
-            new_node->n = n;
-            new_node->next = NULL;
-            new_node->next = tmp->next;
-            new_node->prev = tmp;
-            tmp->next->prev = new_node;
-            tmp->next = new_node;
-            return (new_node);
-        }
-        else
-            tmp = tmp->next;
-    }
+	if (idx == 0)
+		return (add_dnodeint(h, n));
+	for (i = 0; tmp && i < idx; i++)
+	{
+		if (i == idx - 1)
+		{
+			if (tmp->next == NULL)
+				return (add_dnodeint_end(h, n));
+			new_node = malloc(sizeof(dlistint_t));
+			if (!new_node || !h)
+				return (NULL);
+			new_node->n = n;
+			new_node->next = NULL;
+			new_node->next = tmp->next;
+			new_node->prev = tmp;
+			tmp->next->prev = new_node;
+			tmp->next = new_node;
+			return (new_node);
+		}
+		else
+			tmp = tmp->next;
+	}
 
-    return (NULL);
+	return (NULL);
 }
 
 /**
@@ -119,15 +119,15 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
  */
 dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 {
-    unsigned int i = 0;
+	unsigned int i = 0;
 
-    if (!head)
-        return (NULL);
+	if (!head)
+		return (NULL);
 
-    for (; head && i < index; head = head->next)
-        i++;
+	for (; head && i < index; head = head->next)
+		i++;
 
-    return (head ? head : NULL);
+	return (head ? head : NULL);
 }
 
 /**
@@ -140,30 +140,30 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
  */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-    dlistint_t *tmp = *head;
-    unsigned int i = 0;
+	dlistint_t *tmp = *head;
+	unsigned int i = 0;
 
-    if (!index)
-    {
-        (*head) = tmp->next;
-        if (tmp->next)
-            tmp->next->prev = NULL;
-        tmp->next = NULL;
-        free(tmp);
-        return (1);
-    }
-    while (i < index)
-    {
-        tmp = tmp->next;
-        i++;
-        if (!tmp)
-            return (0);
-    }
+	if (!index)
+	{
+		(*head) = tmp->next;
+		if (tmp->next)
+			tmp->next->prev = NULL;
+		tmp->next = NULL;
+		free(tmp);
+		return (1);
+	}
+	while (i < index)
+	{
+		tmp = tmp->next;
+		i++;
+		if (!tmp)
+			return (0);
+	}
 
-    tmp->prev->next = tmp->next;
-    if (tmp->next)
-        tmp->next->prev = tmp->prev;
-    free(tmp);
+	tmp->prev->next = tmp->next;
+	if (tmp->next)
+		tmp->next->prev = tmp->prev;
+	free(tmp);
 
-    return (1);
+	return (1);
 }
