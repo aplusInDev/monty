@@ -1,11 +1,10 @@
 #include "monty.h"
-#include "lists.h"
 
 /**
- *count_word - Helper function to count the number of words in a string
- *@s: String to evaluate
+ * count_word - Helper function to count the number of words in a string
+ * @s: String to evaluate
  *
- *Return: Number of words
+ * Return: Number of words
  */
 
 int count_word(char *s)
@@ -30,10 +29,10 @@ int count_word(char *s)
 }
 
 /**
- ***strtow - Split a string into words
- *@str: String to split
+ * strtow - Split a string into words
+ * @str: String to split
  *
- *Return: Pointer to an array of strings (Success) or NULL (Error
+ * Return: Pointer to an array of strings (Success) or NULL (Error
  */
 
 char **strtow(char *str)
@@ -46,7 +45,7 @@ char **strtow(char *str)
 	if (word_count == 0)
 		return (NULL);
 
-	word_matrix = (char **) malloc(sizeof(char*) *(word_count + 1));
+	word_matrix = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (word_matrix == NULL)
 		return (NULL);
 
@@ -57,12 +56,11 @@ char **strtow(char *str)
 			if (char_index)
 			{
 				word_end = i;
-				tmp = (char*) malloc(sizeof(char) *(char_index + 1));
+				tmp = (char *)malloc(sizeof(char) * (char_index + 1));
 				if (tmp == NULL)
 					return (NULL);
 				while (word_start < word_end)
-					*
-					tmp++ = str[word_start++];
+					*tmp++ = str[word_start++];
 				*tmp = '\0';
 				word_matrix[matrix_index] = tmp - char_index;
 				matrix_index++;
@@ -78,8 +76,10 @@ char **strtow(char *str)
 }
 
 /**
- *free_everything - Free arrays of strings
- *@args: Array of strings to free
+ * free_everything - Free arrays of strings
+ * @args: Array of strings to free
+ *
+ * Return: nothing
  */
 void free_everything(char **args)
 {
@@ -92,4 +92,37 @@ void free_everything(char **args)
 		free(args[i]);
 
 	free(args);
+}
+
+/**
+ * free_all - Handles custom memory deallocation
+ * @all: Flag indicating what to free
+ *
+ * Return: nothing
+ */
+
+void free_all(int all)
+{
+	if (data.line)
+	{
+		free(data.line);
+		data.line = NULL;
+		free_everything(data.words);
+		data.words = NULL;
+	}
+
+	if (all)
+	{
+		if (data.stack)
+		{
+			free_dlistint(data.stack);
+			data.stack = NULL;
+		}
+
+		if (data.fptr)
+		{
+			fclose(data.fptr);
+			data.fptr = NULL;
+		}
+	}
 }
