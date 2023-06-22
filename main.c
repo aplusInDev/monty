@@ -1,7 +1,5 @@
 #include "monty.h"
 
-data_t data = DATA_INIT;
-
 /**
  * main - check code
  * @argc: arguments count

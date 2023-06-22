@@ -30,7 +30,7 @@ void (*get_func(char **parsed))(stack_t **, unsigned int)
 		{NULL, NULL}};
 	int i = 0;
 
-	while (func_arr[i] != NULL)
+	while (func_arr[i].opcode != NULL)
 	{
 		if (strcmp(func_arr[i].opcode, parsed[0]) == 0)
 			return (func_arr[i].f);
